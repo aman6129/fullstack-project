@@ -1,11 +1,27 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
-import { ImageSearchPage } from './pages';
+import { ImageSearchPage, FavoritesPage } from './pages';
 import './App.css';
+import { NavBar } from './components';
 
 function App() {
   return (
-    <ImageSearchPage />
+    <Router>
+      <NavBar />
+      <Switch>
+        <Route path='/favorites'>
+          <FavoritesPage />
+        </Route>
+        <Route path='/'>
+          <ImageSearchPage />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
