@@ -34,7 +34,7 @@ const ImageList: React.FC<ImageListProps> = ({ searchPhrase }) => {
 
   const generateImageList = () => {
     return data.map(image => (
-      <Grid item xs={4} key={image.id} style={{ textAlign: 'center' }}>
+      <Grid item xs={4} key={image.external_id} style={{ textAlign: 'center' }}>
         <ImageListImage image={image} alt={image.title} />
       </Grid>
     ))
