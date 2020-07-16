@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import GiphyDataType from '../types/GiphyDataType';
+import ImageType from '../types/ImageType';
 
-interface useSearchGiphyResult {
+interface UseSearchGiphyResult {
   loading: boolean;
-  data: GiphyDataType[];
+  data: ImageType[];
 }
 
-const useSearchGiphy = (searchPhrase: string): useSearchGiphyResult => {
+const useSearchGiphy = (searchPhrase: string): UseSearchGiphyResult => {
   const [loading, setLoading ] = useState<boolean>(false);
   const [result, setResults] = useState<any>(undefined);
 
   useEffect(() => {
     if (searchPhrase.length) {
       setLoading(true);
-      
+
       axios.get('/api/search_giphy', {
         params: {
           search: searchPhrase,
@@ -27,7 +27,7 @@ const useSearchGiphy = (searchPhrase: string): useSearchGiphyResult => {
     }
   }, [searchPhrase]);
 
-  return { loading, data: result && result.data ? result.data.data : [] };
+  return { loading, data: result?.data?.images ? result.data.images : [] };
 };
 
 
