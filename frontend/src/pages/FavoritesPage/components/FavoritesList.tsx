@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
 
-import FavoritedImage from './FavoritedImage';
 import UserFavoriteType from '../../../types/UserFavoriteType';
+import FavoritedImage from './FavoritedImage';
 
 interface FavoritesListProps {
   loading?: boolean;
@@ -46,7 +46,7 @@ const FavoritesList: React.FC<FavoritesListProps> = ({ favorites, loading }) => 
   
   const generateFavoritesList = () => {
     return images.map(image => (
-      <Grid item xs={4} key={image.id} style={{ textAlign: 'center' }}>
+      <Grid item sm={4} xs={12} key={image.id} style={{ textAlign: 'center' }}>
         <FavoritedImage image={image} onUnfavorite={() => removeFavoriteFromList(image.id)} />
       </Grid>
     ))

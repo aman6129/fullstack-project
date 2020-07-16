@@ -1,6 +1,6 @@
 interface UserFavoriteType {
   id: number;
-  external_id?: number;
+  external_id?: string;
   slug?: string;
   title: string;
   external_url: string;

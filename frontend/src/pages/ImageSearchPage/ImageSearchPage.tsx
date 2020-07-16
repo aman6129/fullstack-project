@@ -16,8 +16,8 @@ const ImageSearchPage: React.FC = () => {
 
   return (
     <Box p={3}>
-      <Box>
-        <TextField label="Search Gifs" variant="outlined" fullWidth onChange={onSearchChange} />
+      <Box maxWidth='700px' margin='auto' mb={1}>
+        <TextField label="Search Gifs" variant="outlined" fullWidth onChange={onSearchChange} autoFocus />
       </Box>
       <Box py={2}>
         <ImageList searchPhrase={searchPhrase} />
