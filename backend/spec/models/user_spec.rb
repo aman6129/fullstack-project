@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :user do
-  #tests go here
   subject { User.new(email: 'test@mail.com', favorites: [], name: 'John Smith' )}
 
   before { subject.save }

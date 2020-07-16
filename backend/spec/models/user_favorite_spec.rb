@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :user do
-  #tests go here
   let(:owner) {User.new(email: 'test@mail.com', favorites: [], name: 'John Smith' )}
   subject { UserFavorite.new(title: 'Fave1', external_url: 'url', embed_url: 'url', user: owner, image_type: 'gif' )}
 
