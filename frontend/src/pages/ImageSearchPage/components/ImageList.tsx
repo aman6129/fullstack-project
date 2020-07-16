@@ -2,14 +2,15 @@ import React from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
 
 import ImageListImage from './ImageListImage';
-import ImageType from '../types/ImageType';
+
+import { useSearchGiphy } from '../../../api';
 
 interface ImageListProps {
-  loading?: boolean;
-  images: ImageType[];
+  searchPhrase: string;
 }
 
-const ImageList: React.FC<ImageListProps> = ({ images, loading }) => {
+const ImageList: React.FC<ImageListProps> = ({ searchPhrase }) => {
+  const { loading, data } = useSearchGiphy(searchPhrase);
 
   const loadingState = () => {
     return (
@@ -32,8 +33,8 @@ const ImageList: React.FC<ImageListProps> = ({ images, loading }) => {
   }
 
   const generateImageList = () => {
-    return images.map(image => (
-      <Grid item xs={4} key={image.external_id} style={{ textAlign: 'center' }} >
+    return data.map(image => (
+      <Grid item xs={4} key={image.id} style={{ textAlign: 'center' }}>
         <ImageListImage image={image} alt={image.title} />
       </Grid>
     ))
@@ -43,8 +44,8 @@ const ImageList: React.FC<ImageListProps> = ({ images, loading }) => {
     <Box>
       <Grid container spacing={1}>
         {loading && loadingState()}
-        {!loading && !images && emptyState()}
-        {!loading && images && generateImageList()}
+        {!loading && !data && emptyState()}
+        {!loading && data && generateImageList()}
       </Grid>
     </Box>
   );

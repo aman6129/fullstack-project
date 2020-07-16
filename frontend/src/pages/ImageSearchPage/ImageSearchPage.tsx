@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Box, TextField } from '@material-ui/core';
-import ImageSearchResults from './components/ImageSearchResults';
+import ImageList from './components/ImageList';
 
 const ImageSearchPage: React.FC = () => {
   let timeoutID: NodeJS.Timeout;
@@ -20,7 +20,7 @@ const ImageSearchPage: React.FC = () => {
         <TextField label="Search Gifs" variant="outlined" fullWidth onChange={onSearchChange} />
       </Box>
       <Box py={2}>
-        <ImageSearchResults searchPhrase={searchPhrase} />
+        <ImageList searchPhrase={searchPhrase} />
       </Box>
     </Box>
   );
