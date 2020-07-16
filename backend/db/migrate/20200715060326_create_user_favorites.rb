@@ -6,7 +6,7 @@ class CreateUserFavorites < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       t.string :external_url, null: false
       t.string :embed_url, null: false
-      t.string :type
+      t.string :image_type
 
       t.timestamps
     end

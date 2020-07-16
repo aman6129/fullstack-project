@@ -25,7 +25,7 @@ module Api
         owner = User.create!(email: owner_email)
       end
       
-      attributes = favorite_attributes(params)
+      attributes = favorite_attributes(params, owner.id)
       new_favorite = UserFavorite.create!(**attributes)
 
       render json: { favorite: new_favorite }, status: 200
@@ -37,15 +37,15 @@ module Api
       render json: {message: 'Missing owner email'}, status: 400
     end
 
-    def favorite_attributes(params)
+    def favorite_attributes(params, user_id)
       {
         title: params[:title],
         external_url: params[:external_url],
         embed_url: params[:embed_url],
-        type: params[:type],
+        image_type: params[:image_type],
         external_id: params[:external_id],
         slug: params[:slug],
-        user_id: owner.id
+        user_id: user_id
       }
     end
   end

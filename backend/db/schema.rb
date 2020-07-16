@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_060326) do
     t.string "title", null: false
     t.string "external_url", null: false
     t.string "embed_url", null: false
-    t.string "type"
+    t.string "image_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
