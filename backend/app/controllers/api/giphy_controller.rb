@@ -27,7 +27,7 @@ module Api
       search_base_path = 'https://api.giphy.com/v1/gifs/search'
       api_key_param = "api_key=#{Rails.application.secrets.giphy_key}"
       search_phrase_param = "q=#{search_phrase}"
-      limit_param = "limit=5"
+      limit_param = "limit=25"
 
       "#{search_base_path}?#{api_key_param}&#{search_phrase_param}&#{limit_param}"
     end
