@@ -4,7 +4,6 @@ module Api
     require 'json'
 
     def search_giphy
-      puts 'HERE', params, '---'
       search_phrase = params[:search]
 
       if search_phrase.nil?
@@ -14,9 +13,12 @@ module Api
 
       giphy_request_uri = generate_search_query(search_phrase)
       resp = Net::HTTP.get_response(URI.parse(giphy_request_uri))
-      buffer = resp.body
+      body = JSON.parse(resp.body)
 
-      render json: JSON.parse(buffer), status: 200
+      images = body["data"]
+      serialized_images = images.map { |image| ::GiphyImageSerializer.call(image) }
+
+      render json: { images: serialized_images }, status: 200
     end
 
     private 
