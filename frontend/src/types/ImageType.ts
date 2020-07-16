@@ -1,5 +1,5 @@
 interface ImageType {
-  external_id: number;
+  external_id: string;
   external_url: string;
   image_type: string;
   slug: string;
