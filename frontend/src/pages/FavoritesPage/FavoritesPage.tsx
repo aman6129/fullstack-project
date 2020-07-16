@@ -9,9 +9,11 @@ const FavoritesPage: React.FC = () => {
   const { user } = useAuth0();
   const { loading, favorites } = useGetFavorites(user?.email);
 
+  console.log(favorites);
+  
   return (
     <Box p={3}>
-      <FavoritesList loading={loading} images={favorites} />
+      <FavoritesList loading={loading} favorites={favorites} />
     </Box>
   );
 }
