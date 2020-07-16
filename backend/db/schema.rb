@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_060326) do
+ActiveRecord::Schema.define(version: 2020_07_16_025537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "user_favorites", force: :cascade do |t|
-    t.integer "external_id"
+    t.string "external_id"
     t.string "slug"
     t.string "title", null: false
     t.string "external_url", null: false
