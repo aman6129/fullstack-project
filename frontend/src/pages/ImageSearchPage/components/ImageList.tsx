@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Box, Grid, Typography } from '@material-ui/core';
+
+import ImageListImage from './ImageListImage';
 
 import { useSearchGiphy } from '../../../api';
 
@@ -24,7 +25,7 @@ const ImageList: React.FC<ImageListProps> = ({ searchPhrase }) => {
   const emptyState = () => {
     return (
       <Grid item xs={12}>
-        <Box textAlign='center'>
+        <Box>
           <Typography variant='h6'>Nothing found, try a different search.</Typography>
         </Box>
       </Grid>
@@ -34,7 +35,7 @@ const ImageList: React.FC<ImageListProps> = ({ searchPhrase }) => {
   const generateImageList = () => {
     return data.map(image => (
       <Grid item xs={4} key={image.id} style={{ textAlign: 'center' }}>
-        <img src={image.images.fixed_height.url} alt={image.slug} />
+        <ImageListImage image={image} alt={image.title} />
       </Grid>
     ))
   }

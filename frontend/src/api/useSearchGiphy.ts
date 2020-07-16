@@ -1,45 +1,33 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const BASE_PATH = '/api/search_giphy?search';
-
-interface GiphyData {
-  type: string;
-  id: string;
-  slug: string;
-  url: string;
-  title: string;
-  images: {
-    fixed_height: {
-      url: string;
-    }
-  }
-}
+import GiphyDataType from '../types/GiphyDataType';
 
 interface useSearchGiphyResult {
   loading: boolean;
-  data: GiphyData[];
+  data: GiphyDataType[];
 }
 
 const useSearchGiphy = (searchPhrase: string): useSearchGiphyResult => {
   const [loading, setLoading ] = useState<boolean>(false);
   const [result, setResults] = useState<any>(undefined);
 
-  const apiPath = `${BASE_PATH}=${searchPhrase}`;
-
   useEffect(() => {
     if (searchPhrase.length) {
       setLoading(true);
-      fetch(apiPath)
-        .then(res => res.json())
-        .then(res => setResults(res),
-          (error) => {
-            console.error(error);
-        })
-        .finally(() => setLoading(false));
+      
+      axios.get('/api/search_giphy', {
+        params: {
+          search: searchPhrase,
+        },
+      })
+      .then(res => setResults(res))
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false))
     }
-  }, [searchPhrase, apiPath]);
+  }, [searchPhrase]);
 
-  return { loading, data: result && result.data ? result.data : [] };
+  return { loading, data: result && result.data ? result.data.data : [] };
 };
 
 
